@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#9fe0ff">
+<title>Jusqu’à novembre 🍃</title>
+<meta property="og:title" content="Jusqu’à novembre 🍃">
+<meta property="og:description" content="Le compte à rebours des retrouvailles, façon île déserte 🦝✈️">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦝</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#6f5b46; --ink2:#9a8262; --cream:#fffbe9; --cream2:#fff4cf;
+    --teal:#27b4c8; --teal2:#1d97a8; --orange:#ffa937; --orange2:#ff8f3d;
+    --green:#7ac460; --green2:#5fae4b; --red:#e2574b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:Fredoka,system-ui,sans-serif; color:var(--ink);
+    background:linear-gradient(180deg,#8edcff 0%,#b9ecff 45%,#dff8ff 100%);
+    background-attachment:fixed; min-height:100vh; overflow-x:hidden;
+  }
+  ::selection{background:rgba(122,196,96,.35)}
+
+  /* ciel */
+  #ciel{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+  .sun{position:absolute; top:-70px; right:-70px; width:210px; height:210px; border-radius:50%;
+       background:radial-gradient(circle,#fff7c9 0%,#ffef9e 45%,rgba(255,239,158,0) 72%)}
+  .cloud{position:absolute; background:#fff; border-radius:50px; opacity:.92;
+         animation:drift linear infinite; box-shadow:0 6px 0 rgba(120,180,210,.12)}
+  .cloud::before,.cloud::after{content:""; position:absolute; background:#fff; border-radius:50%}
+  .cloud::before{width:55%; height:160%; left:16%; bottom:18%}
+  .cloud::after{width:42%; height:120%; right:14%; bottom:26%}
+  @keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(120vw)}}
+  .balloon{position:absolute; font-size:34px; animation:drift linear infinite; filter:drop-shadow(0 4px 4px rgba(0,0,0,.08))}
+  .balloon i{display:block; font-style:normal; animation:bob 3.4s ease-in-out infinite alternate}
+  .balloon i::after{content:"🎁"; display:block; font-size:.55em; text-align:center; margin-top:-6px}
+  @keyframes bob{from{transform:translateY(0)}to{transform:translateY(14px)}}
+  .flot{position:absolute; bottom:-8vh; animation:rise linear infinite}
+  @keyframes rise{to{transform:translateY(-120vh) rotate(20deg)}}
+
+  /* herbe */
+  #herbe{position:fixed; left:0; right:0; bottom:0; z-index:0; pointer-events:none; line-height:0}
+  #herbe svg{width:100%; height:clamp(70px,12vw,130px); display:block}
+  #herbe .fleurs{position:absolute; inset:auto 0 6px 0; font-size:clamp(16px,2.6vw,26px); text-align:left}
+  #herbe .fleurs span{position:absolute; bottom:0}
+
+  main{position:relative; z-index:1; max-width:820px; margin:0 auto;
+       padding:clamp(24px,6vw,56px) 18px calc(clamp(70px,12vw,130px) + 40px); text-align:center}
+
+  .lead{display:inline-block; background:rgba(255,255,255,.75); border-radius:999px;
+        padding:7px 20px; font-weight:600; font-size:14px; color:var(--ink);
+        box-shadow:0 3px 0 rgba(110,90,60,.12); margin:0 0 16px}
+  .lead b{color:#e26d7f}
+  h1{font-size:clamp(38px,8vw,58px); font-weight:700; margin:0 0 26px; color:#fffef2; letter-spacing:.01em;
+     text-shadow:2px 0 0 #6fb55b,-2px 0 0 #6fb55b,0 2px 0 #6fb55b,0 -2px 0 #6fb55b,
+       1.6px 1.6px 0 #6fb55b,-1.6px 1.6px 0 #6fb55b,1.6px -1.6px 0 #6fb55b,-1.6px -1.6px 0 #6fb55b,
+       0 6px 0 rgba(80,130,80,.3)}
+
+  /* bulle de dialogue */
+  .dialog{display:flex; align-items:flex-start; gap:14px; text-align:left; margin:0 0 34px}
+  .avatar{flex:0 0 auto; width:64px; height:64px; border-radius:50%; background:#fff;
+          display:grid; place-items:center; font-size:36px; box-shadow:0 4px 0 rgba(110,90,60,.15);
+          border:3px solid var(--cream2)}
+  .bubble{position:relative; flex:1; background:var(--cream); border-radius:24px;
+          padding:24px 22px 18px; box-shadow:0 5px 0 rgba(110,90,60,.13)}
+  .bubble::after{content:""; position:absolute; left:-9px; top:26px; width:20px; height:20px;
+                 background:var(--cream); transform:rotate(45deg); border-radius:4px}
+  .nametag{position:absolute; top:-15px; left:16px; background:linear-gradient(180deg,var(--orange),var(--orange2));
+           color:#fff; font-weight:600; font-size:14px; padding:5px 16px; border-radius:12px;
+           transform:skewX(-6deg); box-shadow:0 3px 0 rgba(180,110,30,.35)}
+  .nametag span{display:inline-block; transform:skewX(6deg)}
+  .bubble p{margin:4px 0 0; font-size:16.5px; line-height:1.55; font-weight:500}
+  .bubble b{color:var(--green2)}
+
+  /* billet Dodo Airlines */
+  .pass{position:relative; background:var(--cream); border-radius:26px; overflow:hidden;
+        box-shadow:0 6px 0 rgba(110,90,60,.13); margin:0 0 18px}
+  .pass .strip{background:linear-gradient(180deg,var(--teal),var(--teal2)); color:#fff;
+               font-weight:600; font-size:14px; letter-spacing:.14em; text-transform:uppercase;
+               padding:10px 14px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap}
+  .pass .corps{padding:26px 18px 20px}
+  .big{font-size:clamp(88px,22vw,150px); font-weight:700; line-height:1; color:var(--ink);
+       cursor:pointer; user-select:none; -webkit-user-select:none; transition:transform .15s;
+       text-shadow:0 4px 0 rgba(110,90,60,.12)}
+  .big:active{transform:scale(.95)}
+  .dodos{font-size:clamp(17px,4.4vw,22px); font-weight:600; color:var(--teal2); margin:8px 0 4px}
+  .clock{font-variant-numeric:tabular-nums; color:var(--ink2); font-weight:500; margin:0; font-size:14.5px}
+  .dechire{position:relative; border-top:3px dashed #e3d3ac; margin:0 26px}
+  .dechire::before,.dechire::after{content:""; position:absolute; top:-13px; width:26px; height:26px;
+    border-radius:50%; background:#bfeeff}
+  .dechire::before{left:-39px} .dechire::after{right:-39px}
+  .pass .mini{display:flex; justify-content:center; gap:6px 22px; flex-wrap:wrap; padding:13px 14px 16px;
+              font-size:13.5px; font-weight:500; color:var(--ink2)}
+  .pass .mini b{color:var(--ink); font-weight:600}
+
+  /* cartes souvenirs */
+  .cartes{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:0 0 40px}
+  @media(max-width:640px){.cartes{grid-template-columns:1fr}}
+  .carte{position:relative; background:var(--cream); border-radius:22px; padding:18px 12px 15px;
+         box-shadow:0 5px 0 rgba(110,90,60,.13)}
+  .carte::before{content:""; position:absolute; inset:7px; border:2px dashed #e6d6ae; border-radius:15px; pointer-events:none}
+  .carte .pic{font-size:34px; line-height:1}
+  .carte .n{font-size:42px; font-weight:700; color:var(--ink); line-height:1.15; font-variant-numeric:tabular-nums}
+  .carte .l{font-size:13.5px; font-weight:500; margin-top:2px; line-height:1.35}
+  .carte .d{font-size:11.5px; color:var(--ink2); margin-top:4px}
+
+  /* liste Nook Miles */
+  .liste{background:var(--cream); border-radius:26px; padding:26px clamp(14px,3.5vw,30px) 28px;
+         box-shadow:0 6px 0 rgba(110,90,60,.13); text-align:left}
+  .liste h2{font-size:30px; font-weight:700; margin:0; text-align:center; color:var(--ink)}
+  .hint{text-align:center; color:var(--ink2); font-size:13.5px; font-weight:500; margin:4px 0 14px}
+  .progres{display:flex; align-items:center; gap:12px; max-width:420px; margin:0 auto 20px}
+  .prog{flex:1; height:16px; background:#efe3bd; border-radius:999px; overflow:hidden;
+        box-shadow:inset 0 2px 0 rgba(110,90,60,.12)}
+  .prog i{display:block; height:100%; width:0; border-radius:999px;
+          background:linear-gradient(180deg,#8fd472,var(--green2)); transition:width .4s cubic-bezier(.2,1.4,.4,1)}
+  #progTxt{font-weight:600; font-size:14px; color:var(--green2); white-space:nowrap}
+  ul{list-style:none; margin:0; padding:0; columns:2; column-gap:18px}
+  @media(max-width:620px){ul{columns:1}}
+  li{break-inside:avoid; margin:0 0 8px}
+  li label{position:relative; display:flex; gap:10px; align-items:flex-start; padding:9px 44px 9px 10px;
+           border-radius:14px; cursor:pointer; background:#fffdf4; box-shadow:0 2px 0 rgba(110,90,60,.09);
+           transition:transform .15s}
+  li label:hover{transform:rotate(-.6deg) scale(1.012)}
+  li input{position:absolute; opacity:0; pointer-events:none}
+  .h{flex:0 0 auto; width:22px; height:22px; margin-top:1px; border-radius:50%; border:2.5px solid #d8c9a4;
+     display:grid; place-items:center; font-size:13px; font-weight:700; color:#fff; transition:.2s}
+  li.done .h{background:var(--green); border-color:var(--green2)}
+  li.done .h::before{content:"✓"}
+  li.done .t{color:#b3a482}
+  .t{font-size:14.5px; line-height:1.45; font-weight:500}
+  .t .em{margin-right:6px}
+  a{color:var(--teal2)}
+  .stamp{position:absolute; right:8px; top:50%; margin-top:-19px; width:38px; height:38px;
+         border:3px solid var(--red); border-radius:50%; color:var(--red); display:none;
+         place-items:center; font-size:10.5px; font-weight:700; transform:rotate(-14deg); opacity:.9}
+  li.done .stamp{display:grid; animation:stampIn .35s cubic-bezier(.2,2.1,.5,1)}
+  @keyframes stampIn{from{transform:rotate(-14deg) scale(2.3); opacity:0}}
+  li input:focus-visible ~ .h{outline:3px solid var(--teal); outline-offset:2px}
+
+  footer{margin:34px 0 0; color:var(--ink); opacity:.75; font-size:13.5px; font-weight:500}
+
+  .pop{position:fixed; z-index:9; pointer-events:none; animation:pop 1.1s ease-out forwards}
+  @keyframes pop{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot)); opacity:0}}
+
+  @media(prefers-reduced-motion:reduce){
+    .cloud,.balloon,.balloon i,.flot{animation:none}
+    .flot,.balloon{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="ciel" aria-hidden="true">
+  <div class="sun"></div>
+</div>
+
+<main>
+  <p class="lead">toi <b>❤</b> moi</p>
+  <h1>Jusqu’à novembre !</h1>
+
+  <section class="dialog">
+    <div class="avatar" aria-hidden="true">🦝</div>
+    <div class="bubble">
+      <div class="nametag"><span>Raton, messager du village</span></div>
+      <p id="msg">Coucou vous deux ! Plus que <b>… dodos</b> avant les retrouvailles, hé hé ! En attendant, on coche la liste 🍃</p>
+    </div>
+  </section>
+
+  <section class="pass">
+    <div class="strip">🦤 Dodo Airlines <span>·</span> vol DAL-1101 <span>·</span> embarquement le 1ᵉʳ novembre 2026</div>
+    <div class="corps">
+      <div class="big" id="big" title="clique ✨">J-…</div>
+      <p class="dodos" id="dodos">&nbsp;</p>
+      <p class="clock" id="clock">&nbsp;</p>
+    </div>
+    <div class="dechire"></div>
+    <div class="mini">
+      <span>passagers : <b>toi &amp; moi</b></span>
+      <span>sièges : <b>1A + 1B</b></span>
+      <span>bagages : <b>câlins illimités 🤗</b></span>
+    </div>
+  </section>
+
+  <section class="cartes">
+    <div class="carte">
+      <div class="pic">🍺</div>
+      <div class="n" id="cOrval">…</div>
+      <div class="l">jours depuis la première Orval</div>
+      <div class="d">6 juin 2026</div>
+    </div>
+    <div class="carte">
+      <div class="pic">💍</div>
+      <div class="n" id="cRing">…</div>
+      <div class="l">jours de rrrriiiingue</div>
+      <div class="d">depuis le 12 juillet 2026</div>
+    </div>
+    <div class="carte">
+      <div class="pic">🤗</div>
+      <div class="n" id="cCalins">…</div>
+      <div class="l">câlins à rattraper</div>
+      <div class="d">au moins un par jour de séparation</div>
+    </div>
+  </section>
+
+  <section class="liste">
+    <h2>🍃 Nook Miles à deux</h2>
+    <p class="hint">tout ce qu’on fera ensemble — coche pour tamponner !</p>
+    <div class="progres">
+      <div class="prog"><i id="progFill"></i></div>
+      <span id="progTxt">0 / 0</span>
+    </div>
+    <ul id="bucket"></ul>
+  </section>
+
+  <footer>fait avec ❤, des Nook Miles et un peu de pâte à cookie 🍪</footer>
+</main>
+
+<div id="herbe" aria-hidden="true">
+  <div class="fleurs">
+    <span style="left:4%">🌳</span><span style="left:14%">🌷</span><span style="left:26%">🌼</span>
+    <span style="left:41%">🌸</span><span style="left:55%">🌼</span><span style="left:68%">🌷</span>
+    <span style="left:80%">🌼</span><span style="left:92%">🌳</span>
+  </div>
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,70 Q90,30 180,62 T360,58 T540,66 T720,54 T900,64 T1080,56 T1260,64 T1440,58 V120 H0 Z" fill="#8fd472"/>
+    <path d="M0,92 Q120,66 240,86 T480,84 T720,90 T960,82 T1200,88 T1440,84 V120 H0 Z" fill="#6dbd55"/>
+  </svg>
+</div>
+
+<script>
+  // Dates clés (faciles à modifier)
+  const TARGET = new Date(2026, 10, 1, 0, 0, 0);  // 1er novembre 2026, minuit local
+  const ORVAL  = new Date(2026, 5, 6);            // 6 juin 2026
+  const RING   = new Date(2026, 6, 12);           // 12 juillet 2026
+  const APART  = new Date(2026, 7, 7);            // 7 août 2026, aéroports de NYC
+
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, "0");
+  const DAY = 864e5;
+  const sinceDays = d => Math.max(0, Math.floor((Date.now() - d) / DAY));
+
+  function tick(){
+    const diff = TARGET - Date.now();
+    if (diff <= 0){
+      $("big").textContent = "🤗";
+      $("dodos").textContent = "c’est aujourd’hui !!";
+      $("clock").textContent = "plus besoin de compter";
+      $("msg").innerHTML = "C’est le grand jour, hé hé !! Bonnes retrouvailles vous deux 🎉🍃";
+      document.title = "Ensemble ! 🍃";
+    } else {
+      const days = Math.ceil(diff / DAY);
+      const d = Math.floor(diff / DAY);
+      const h = Math.floor(diff / 36e5) % 24;
+      const m = Math.floor(diff / 6e4) % 60;
+      const s = Math.floor(diff / 1e3) % 60;
+      $("big").textContent = "J-" + days;
+      $("dodos").textContent = days === 1 ? "dernier dodo ! 🦤" : `encore ${days} dodos 🦤💤`;
+      $("clock").textContent = `${d} jours · ${h} h ${pad(m)} min ${pad(s)} s`;
+      $("msg").innerHTML = `Coucou vous deux ! Plus que <b>${days} dodo${days>1?"s":""}</b> avant les retrouvailles, hé hé ! En attendant, on coche la liste 🍃`;
+      document.title = `J-${days} 🍃 Jusqu’à novembre`;
+    }
+    $("cOrval").textContent  = sinceDays(ORVAL);
+    $("cRing").textContent   = sinceDays(RING);
+    $("cCalins").textContent = sinceDays(APART);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // La liste
+  const ITEMS = [
+    ["🤗","FAIRE DES CÂLINS"],
+    ["🪩","retourner au Fluid pour une soirée insolite"],
+    ["⛵","retourner à Sausalito, aka petite sauce"],
+    ["🎬","voir Split"],
+    ["♟️","voir The Queen’s Gambit"],
+    ["👑","voir The Adventures of Priscilla, Queen of the Desert"],
+    ["🌋","aller à Yellowstone"],
+    ["♨️","aller au parc volcanique (bypass hell)"],
+    ["🦞","aller à Boston"],
+    ["🐦‍⬛","aller à Baltimore pour le musée Edgar Allan Poe"],
+    ["🚂","prendre l’Amtrak pour Sacramento"],
+    ["💍","se marier (où ?)"],
+    ["🏊","aller se baigner"],
+    ["🐻","voir un ours et lui faire un câlin =))"],
+    ["👾","aller au musée du jeu vidéo"],
+    ["🖼️","aller au musée de SF"],
+    ["🏛️","aller au musée de la Légion d’Honneur"],
+    ["🧑‍🔬","travailler ensemble"],
+    ["🏡","avoir un appartement"],
+    ["🏎️","conduire une Mustang GT noire (2.3L High Performance)"],
+    ["🌴","aller à LA"],
+    ["🌊","aller à Malibu"],
+    ["🪜","aller à la « plage des escaliers »"],
+    ["🎢","aller au parc Disney de LA"],
+    ["🏀","aller voir un match des Lakers"],
+    ["🎰","jouer dans un casino à Las Vegas"],
+    ["🥪","aller à Hawaii pour les sandwiches gratuits"],
+    ["🗽","revisiter NYC"],
+    ["🥢","le restaurant chinois Mujiri près de chez Martina"],
+    ["🍪","acheter des cookies chez Insomnia Cookies"],
+    ["🇫🇷","aller en France (Paris, Montpellier, Lozère)"],
+    ["🇧🇪","aller en Belgique"],
+    ["🇧🇷","aller au Brésil"],
+    ["🎸","voir les Psychedelic Furs en Californie"],
+    ["🥐","acheter des croissants et des pains au chocolat"],
+    ["📸","prendre une jolie photo ensemble"],
+    ["🐶","avoir un animal de compagnie (un chien =’))"],
+    ["🎳","jouer au bowling"],
+    ["🫘","FALL GUYS !"],
+    ["🎮","jouer aux jeux vidéo (Mario Kart etc.)"],
+    ["🐠","avoir un aquarium"],
+    ["🐦","apprivoiser un oiseau sauvage"],
+    ["🕹️","faire des jeux d’arcade"],
+    ["🌙","avoir un hamac"],
+    ["🏚️","faire de l’urbex"],
+    ["🌸","acheter un parfum"],
+    ["🤿","faire du tuba"],
+    ["😴","avoir une routine de sommeil régulière"],
+    ["📚","avoir une bibliothèque française"],
+    ["🚚","vivre dans un autre état des USA, ou à l’étranger"],
+    ["🍄","aller cueillir des champignons"],
+    ["🌷","voir <a href='https://www.instagram.com/p/Db5-BPHguDA/' target='_blank' rel='noopener'>le lac rose</a>"],
+  ];
+  const KEY = "jn-liste-v1";
+  let done = new Set();
+  try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e){}
+
+  const ul = $("bucket");
+  ITEMS.forEach((it, i) => {
+    const li = document.createElement("li");
+    if (done.has(i)) li.className = "done";
+    li.innerHTML = `<label><input type="checkbox" data-i="${i}" ${done.has(i) ? "checked" : ""}><span class="h" aria-hidden="true"></span><span class="t"><span class="em">${it[0]}</span>${it[1]}</span><span class="stamp" aria-hidden="true">FAIT !</span></label>`;
+    ul.appendChild(li);
+  });
+  function progress(){
+    $("progTxt").textContent = `${done.size} / ${ITEMS.length}`;
+    $("progFill").style.width = (100 * done.size / ITEMS.length) + "%";
+  }
+  progress();
+  ul.addEventListener("change", e => {
+    const i = +e.target.dataset.i;
+    e.target.checked ? done.add(i) : done.delete(i);
+    e.target.closest("li").classList.toggle("done", e.target.checked);
+    try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(err){}
+    progress();
+  });
+
+  // Ciel : nuages, ballon cadeau, papillons
+  const ciel = $("ciel");
+  const NUAGES = [[8,110,.9,70],[18,80,.7,95],[30,140,1,120],[46,70,.55,85]];
+  NUAGES.forEach(([top,w,op,dur],i) => {
+    const c = document.createElement("div");
+    c.className = "cloud";
+    c.style.cssText = `top:${top}%;width:${w}px;height:${w*.32}px;opacity:${op};animation-duration:${dur}s;animation-delay:${-Math.random()*dur}s`;
+    ciel.appendChild(c);
+  });
+  const b = document.createElement("div");
+  b.className = "balloon";
+  b.innerHTML = "<i>🎈</i>";
+  b.style.cssText = "top:12%;animation-duration:95s;animation-delay:-30s";
+  ciel.appendChild(b);
+  const EMOJIS = ["🦋","🍃","🌼","🦋","⭐","🍃"];
+  for (let i = 0; i < 10; i++){
+    const f = document.createElement("span");
+    f.className = "flot";
+    f.textContent = EMOJIS[i % EMOJIS.length];
+    f.style.cssText = `left:${Math.random()*100}vw;font-size:${13+Math.random()*14}px;opacity:${(.25+Math.random()*.3).toFixed(2)};animation-duration:${26+Math.random()*24}s;animation-delay:${-Math.random()*50}s`;
+    ciel.appendChild(f);
+  }
+
+  // Confettis de feuilles au clic sur le grand nombre
+  $("big").addEventListener("click", e => {
+    const x = e.clientX || innerWidth/2, y = e.clientY || innerHeight/3;
+    const B = ["🍃","🌸","⭐","🦋","💛"];
+    for (let i = 0; i < 14; i++){
+      const p = document.createElement("span");
+      p.className = "pop";
+      p.textContent = B[i % B.length];
+      p.style.cssText = `left:${x}px;top:${y}px;font-size:${13+Math.random()*14}px;--dx:${(Math.random()*260-130).toFixed(0)}px;--dy:${(-40-Math.random()*170).toFixed(0)}px;--rot:${(Math.random()*90-45).toFixed(0)}deg`;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1200);
+    }
+  });
+</script>
+</body>
+</html>
