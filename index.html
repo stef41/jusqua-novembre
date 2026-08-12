@@ -24,7 +24,7 @@
     content:""; position:absolute; left:-20%; right:-20%; bottom:-38%; height:75%;
     background:radial-gradient(ellipse at center, rgba(255,130,170,.18), transparent 65%);
   }
-  .lune{position:absolute; top:9%; right:9%; width:44px; height:44px; border-radius:50%;
+  .lune{position:absolute; top:4%; right:4%; width:38px; height:38px; border-radius:50%;
         background:radial-gradient(circle at 35% 35%, #fff8e8, #ffe9c0 60%, rgba(255,233,192,0) 72%);
         filter:drop-shadow(0 0 18px rgba(255,240,210,.5))}
   .filante{position:absolute; width:110px; height:1.5px; border-radius:2px; opacity:0;
@@ -53,8 +53,6 @@
     text-shadow:0 6px 30px rgba(255,140,180,.35); transition:transform .15s;
   }
   .big:active{transform:scale(.95)}
-  .dodos{font-size:clamp(17px,4.5vw,22px); font-weight:500; margin:0; color:#ffe9b8}
-  .clock{font-size:14px; color:rgba(244,236,255,.5); margin:8px 0 0; font-variant-numeric:tabular-nums}
 
   .constel{margin:52px auto 0; max-width:460px}
   .constel svg{width:100%; height:auto; overflow:visible}
@@ -77,8 +75,6 @@
 <main>
   <h1>Jusqu’à novembre</h1>
   <div class="big" id="big" title="clique ✨">J-…</div>
-  <p class="dodos" id="dodos">&nbsp;</p>
-  <p class="clock" id="clock">retrouvailles le 1ᵉʳ novembre 2026</p>
 
   <section class="constel">
     <svg viewBox="70 10 300 140" role="img" aria-label="La constellation du raton laveur">
@@ -118,13 +114,11 @@
     const diff = TARGET - Date.now();
     if (diff <= 0){
       $("big").textContent = "🤗";
-      $("dodos").textContent = "c’est aujourd’hui !";
       document.title = "Ensemble ❤";
       return;
     }
     const days = Math.ceil(diff / DAY);
     $("big").textContent = "J-" + days;
-    $("dodos").textContent = days === 1 ? "dernier lever de soleil ☀️" : `encore ${days} levers de soleil ☀️`;
     document.title = `J-${days} · Jusqu’à novembre`;
   }
   tick(); setInterval(tick, 6e4);
