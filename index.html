@@ -70,23 +70,6 @@
   .cap{font-size:14px; color:rgba(244,236,255,.6); margin-top:2px}
   .cap span{display:block; font-size:12.5px; font-style:italic; color:rgba(244,236,255,.42); margin-top:3px}
 
-  .liste{margin:52px auto 0; text-align:left}
-  h2{font-size:24px; font-weight:600; text-align:center; margin:0 0 2px; color:#ffd6e4}
-  .score{text-align:center; font-size:13px; color:rgba(244,236,255,.5); margin:0 0 16px}
-  ul{list-style:none; margin:0; padding:0; columns:2; column-gap:30px}
-  @media(max-width:560px){ul{columns:1}}
-  li{break-inside:avoid}
-  li label{display:flex; gap:9px; align-items:flex-start; padding:5px 6px; border-radius:10px; cursor:pointer}
-  li label:hover{background:rgba(255,255,255,.06)}
-  li input{position:absolute; opacity:0; pointer-events:none}
-  .h{flex:0 0 auto; width:20px; text-align:center; transition:transform .25s}
-  .h::before{content:"♡"; color:#ff9fb8}
-  li.done .h::before{content:"❤"}
-  li.done .h{transform:scale(1.2)}
-  li.done .t{color:rgba(244,236,255,.4); text-decoration:line-through; text-decoration-color:rgba(255,159,184,.5)}
-  .t{font-size:15px; line-height:1.45}
-  a{color:#ffb1c8}
-
   footer{margin:46px 0 8px; font-size:13px; color:rgba(244,236,255,.45)}
   .pop{position:fixed; z-index:9; pointer-events:none; animation:pop 1.1s ease-out forwards}
   @keyframes pop{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot)); opacity:0}}
@@ -135,12 +118,6 @@
     </p>
   </section>
 
-  <section class="liste">
-    <h2>la liste</h2>
-    <p class="score" id="score">&nbsp;</p>
-    <ul id="bucket"></ul>
-  </section>
-
   <footer>fait avec ❤ et un peu de pâte à cookie, par ton petit génie ✨</footer>
 </main>
 
@@ -166,81 +143,6 @@
     document.title = `J-${days} · Jusqu’à novembre`;
   }
   tick(); setInterval(tick, 1000);
-
-  const ITEMS = [
-    ["🤗","FAIRE DES CÂLINS"],
-    ["🪩","retourner au Fluid pour une soirée insolite"],
-    ["⛵","retourner à Sausalito, aka petite sauce"],
-    ["🎬","voir Split"],
-    ["♟️","voir The Queen’s Gambit"],
-    ["👑","voir The Adventures of Priscilla, Queen of the Desert"],
-    ["🌋","aller à Yellowstone"],
-    ["♨️","aller au parc volcanique (bypass hell)"],
-    ["🦞","aller à Boston"],
-    ["🐦‍⬛","aller à Baltimore pour le musée Edgar Allan Poe"],
-    ["🚂","prendre l’Amtrak pour Sacramento"],
-    ["💍","se marier (où ?)"],
-    ["🏊","aller se baigner"],
-    ["🐻","voir un ours et lui faire un câlin =))"],
-    ["👾","aller au musée du jeu vidéo"],
-    ["🖼️","aller au musée de SF"],
-    ["🏛️","aller au musée de la Légion d’Honneur"],
-    ["🧑‍🔬","travailler ensemble"],
-    ["🏡","avoir un appartement"],
-    ["🏎️","conduire une Mustang GT noire (2.3L High Performance)"],
-    ["🌴","aller à LA"],
-    ["🌊","aller à Malibu"],
-    ["🪜","aller à la « plage des escaliers »"],
-    ["🎢","aller au parc Disney de LA"],
-    ["🏀","aller voir un match des Lakers"],
-    ["🎰","jouer dans un casino à Las Vegas"],
-    ["🥪","aller à Hawaii pour les sandwiches gratuits"],
-    ["🗽","revisiter NYC"],
-    ["🥢","le restaurant chinois Mujiri près de chez Martina"],
-    ["🍪","acheter des cookies chez Insomnia Cookies"],
-    ["🇫🇷","aller en France (Paris, Montpellier, Lozère)"],
-    ["🇧🇪","aller en Belgique"],
-    ["🇧🇷","aller au Brésil"],
-    ["🎸","voir les Psychedelic Furs en Californie"],
-    ["🥐","acheter des croissants et des pains au chocolat"],
-    ["📸","prendre une jolie photo ensemble"],
-    ["🐶","avoir un animal de compagnie (un chien =’))"],
-    ["🎳","jouer au bowling"],
-    ["🫘","FALL GUYS !"],
-    ["🎮","jouer aux jeux vidéo (Mario Kart etc.)"],
-    ["🐠","avoir un aquarium"],
-    ["🐦","apprivoiser un oiseau sauvage"],
-    ["🕹️","faire des jeux d’arcade"],
-    ["🌙","avoir un hamac"],
-    ["🏚️","faire de l’urbex"],
-    ["🌸","acheter un parfum"],
-    ["🤿","faire du tuba"],
-    ["😴","avoir une routine de sommeil régulière"],
-    ["📚","avoir une bibliothèque française"],
-    ["🚚","vivre dans un autre état des USA, ou à l’étranger"],
-    ["🍄","aller cueillir des champignons"],
-    ["🌷","voir <a href='https://www.instagram.com/p/Db5-BPHguDA/' target='_blank' rel='noopener'>le lac rose</a>"],
-  ];
-  const KEY = "jn-liste-v1";
-  let done = new Set();
-  try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e){}
-
-  const ul = $("bucket");
-  const score = () => $("score").textContent = `${done.size} / ${ITEMS.length} ❤`;
-  ITEMS.forEach((it, i) => {
-    const li = document.createElement("li");
-    if (done.has(i)) li.className = "done";
-    li.innerHTML = `<label><input type="checkbox" data-i="${i}" ${done.has(i) ? "checked" : ""}><span class="h" aria-hidden="true"></span><span class="t">${it[0]} ${it[1]}</span></label>`;
-    ul.appendChild(li);
-  });
-  score();
-  ul.addEventListener("change", e => {
-    const i = +e.target.dataset.i;
-    e.target.checked ? done.add(i) : done.delete(i);
-    e.target.closest("li").classList.toggle("done", e.target.checked);
-    score();
-    try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(err){}
-  });
 
   // ciel : étoiles + douceurs flottantes
   const ciel = $("ciel");
