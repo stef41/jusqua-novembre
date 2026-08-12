@@ -132,7 +132,7 @@
     s.style.cssText = `top:${Math.random()*100}%;left:${Math.random()*100}%;width:${size}px;height:${size}px;animation-delay:${-Math.random()*3}s;animation-duration:${2.4+Math.random()*2.4}s`;
     ciel.appendChild(s);
   }
-  const EMOJIS = ["❤️","🥐","🍪","🐿️","🦝","🍺","☕","🫘","🐦‍⬛","🧬","🍫","🤍","✨"];
+  const EMOJIS = ["❤️","🥐","🍪","🐿️","🦝","🍺","☕","🐦‍⬛","🧬","🍫","🤍","✨"];
   for (let i = 0; i < 21; i++){
     const f = document.createElement("span");
     f.className = "flot";
@@ -144,7 +144,7 @@
   // pluie de cœurs au clic
   $("big").addEventListener("click", e => {
     const x = e.clientX || innerWidth/2, y = e.clientY || innerHeight/3;
-    const B = ["❤","🥐","🍪","🍺","🫘","✨"];
+    const B = ["❤","🥐","🍪","🍺","✨"];
     for (let i = 0; i < 12; i++){
       const p = document.createElement("span");
       p.className = "pop";
